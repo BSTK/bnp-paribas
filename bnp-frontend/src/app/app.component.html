@@ -1,0 +1,151 @@
+<div class="col-lg-8 mx-auto p-3 py-md-5">
+  <header class="d-flex align-items-center pb-3 mb-5 border-bottom">
+    <a href="/" class="d-flex align-items-center text-dark text-decoration-none">
+      <h2>BNP Paribas</h2>
+    </a>
+  </header>
+
+  <main>
+    <form #formMovimentosManuais="ngForm">
+      <div class="row">
+        <h3>Movimentos Manuais</h3>
+      </div>
+      <div class="row mb-2">
+        <div class="col">
+          <label for="mes">Mês:</label>
+          <input
+              type="text"
+              id="mes"
+              name="mes"
+              class="form-control"
+              placeholder="(00) 00000-0000"
+              required
+          />
+        </div>
+        <div class="col">
+          <label for="ano">Ano:</label>
+          <input
+              type="ano"
+              id="ano"
+              name="ano"
+              class="form-control"
+              required
+          />
+        </div>
+      </div>
+      <div class="row mb-2">
+        <div class="col">
+          <label for="produto">Produto:</label>
+          <select
+              class="form-select"
+              id="produto"
+              name="produto"
+              required>
+            <option>-- Selecione --</option>
+            <option *ngFor="let item of dados" [value]="item">
+              {{ item }}
+            </option>
+          </select>
+        </div>
+        <div class="col">
+          <label for="cosif">Cosif:</label>
+          <select
+              class="form-select"
+              id="cosif"
+              name="cosif"
+              required>
+            <option>-- Selecione --</option>
+            <option *ngFor="let item of dados" [value]="item">
+              {{ item }}
+            </option>
+          </select>
+        </div>
+      </div>
+      <div class="row mb-2">
+        <div class="col-6">
+          <label for="valor">Valor:</label>
+          <input
+              type="text"
+              id="valor"
+              name="valor"
+              class="form-control"
+              placeholder="(00) 00000-0000"
+              required
+          />
+        </div>
+      </div>
+      <div class="row mb-2">
+        <div class="col-6">
+          <label for="descricao">Descrição:</label>
+          <textarea
+              type="text"
+              id="descricao"
+              name="descricao"
+              class="form-control"
+              rows="4"
+              placeholder="(00) 00000-0000"
+              required>
+          </textarea>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6">
+          <div class="justify-content-between float-right">
+            <button class="btn btn-sm btn-primary">Limpar</button>
+            <button class="btn btn-sm btn-primary">Novo</button>
+            <button class="btn btn-sm btn-primary">Incluir</button>
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <div class="mt-5">
+      <table class="table table-striped">
+        <thead>
+        <tr class="border-top-0">
+          <th scope="col">Mês</th>
+          <th scope="col">Ano</th>
+          <th scope="col">Código do Produto</th>
+          <th scope="col">Descrição do Produto</th>
+          <th scope="col">NR Lançamento</th>
+          <th scope="col">Descrição</th>
+          <th scope="col">Valor</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>02</td>
+          <td>2019</td>
+          <td>PROD 01</td>
+          <td>DESC 001</td>
+          <td>001</td>
+          <td>TESTE DESC</td>
+          <td>150.00</td>
+        </tr>
+        <tr>
+          <td>02</td>
+          <td>2019</td>
+          <td>PROD 01</td>
+          <td>DESC 001</td>
+          <td>001</td>
+          <td>TESTE DESC</td>
+          <td>150.00</td>
+        </tr>
+        <tr>
+          <td>02</td>
+          <td>2019</td>
+          <td>PROD 01</td>
+          <td>DESC 001</td>
+          <td>001</td>
+          <td>TESTE DESC</td>
+          <td>150.00</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+  <footer class="pt-5 my-5 text-muted border-top">
+    Desafio - BNP Paribas &middot; &copy; 2024
+  </footer>
+</div>
