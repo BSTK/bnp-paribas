@@ -3,6 +3,7 @@ package dev.bstk.bnp.movimento.model;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import java.io.Serializable;
 import java.util.Objects;
@@ -23,7 +24,7 @@ public class MovimentoManualId implements Serializable {
     @Column(name = "NUM_LANCAMENTO")
     private Integer numeroLancamento;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "COD_PRODUTO")
     private Produto produto;
 

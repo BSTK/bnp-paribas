@@ -1,0 +1,122 @@
+<form #formMovimentosManuais="ngForm">
+  <div class="row">
+    <h3>Movimentos Manuais</h3>
+  </div>
+  <div class="row mb-2">
+    <div class="col">
+      <label for="mes">Mês:</label>
+      <input
+          type="text"
+          id="mes"
+          name="mes"
+          class="form-control"
+          [disabled]="desabilitarCampos"
+          required
+      />
+    </div>
+    <div class="col">
+      <label for="ano">Ano:</label>
+      <input
+          type="ano"
+          id="ano"
+          name="ano"
+          class="form-control"
+          [disabled]="desabilitarCampos"
+          required
+      />
+    </div>
+  </div>
+  <div class="row mb-2">
+    <div class="col">
+      <label for="produto">Produto:</label>
+      <select
+          class="form-select"
+          id="produto"
+          name="produto"
+          [disabled]="desabilitarCampos"
+          required>
+        <option>-- Selecione --</option>
+        <option *ngFor="let item of produtos" [value]="item">
+          {{ item.descricao }}
+        </option>
+      </select>
+    </div>
+    <div class="col">
+      <label for="cosif">Cosif:</label>
+      <select
+          class="form-select"
+          id="cosif"
+          name="cosif"
+          [disabled]="desabilitarCampos"
+          required>
+        <option>-- Selecione --</option>
+        <option *ngFor="let item of cosifs" [value]="item">
+          {{ item.codigoCosif }} - {{ item.codigoClassificacao }}
+        </option>
+      </select>
+    </div>
+  </div>
+  <div class="row mb-2">
+    <div class="col-6">
+      <label for="valor">Valor:</label>
+      <input
+          type="text"
+          id="valor"
+          name="valor"
+          class="form-control"
+          [disabled]="desabilitarCampos"
+          required
+      />
+    </div>
+  </div>
+  <div class="row mb-2">
+    <div class="col-6">
+      <label for="descricao">Descrição:</label>
+      <textarea
+          type="text"
+          id="descricao"
+          name="descricao"
+          class="form-control"
+          rows="4"
+          [disabled]="desabilitarCampos"
+          required>
+          </textarea>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-6">
+      <div class="justify-content-between float-right">
+        <button class="btn btn-sm btn-primary" (click)="onLimpar()">Limpar</button>
+        <button class="btn btn-sm btn-primary" (click)="onNovo()">Novo</button>
+        <button class="btn btn-sm btn-primary" (click)="onIncluir()">Incluir</button>
+      </div>
+    </div>
+  </div>
+</form>
+
+<div class="mt-5">
+  <table class="table table-striped">
+    <thead>
+    <tr class="border-top-0">
+      <th scope="col">Mês</th>
+      <th scope="col">Ano</th>
+      <th scope="col">Código do Produto</th>
+      <th scope="col">Descrição do Produto</th>
+      <th scope="col">NR Lançamento</th>
+      <th scope="col">Descrição</th>
+      <th scope="col">Valor</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let item of movimentos">
+      <td>{{ item.mes }}</td>
+      <td>{{ item.ano }}</td>
+      <td>{{ item.codigoProduto }}</td>
+      <td>{{ item.descricaoProduto }}</td>
+      <td>{{ item.numeroLancamento }}</td>
+      <td>{{ item.descricao }}</td>
+      <td>{{ item.valor }}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
