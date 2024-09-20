@@ -3,9 +3,7 @@ package dev.bstk.bnp.movimento.service;
 import dev.bstk.bnp.movimento.model.Produto;
 import dev.bstk.bnp.movimento.model.ProdutoCosif;
 import dev.bstk.bnp.movimento.repository.ProdutoReposiroty;
-import java.util.Collection;
 import java.util.List;
-import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -23,9 +21,7 @@ public class ProdutoService {
     public List<ProdutoCosif> cosifs(final String codigoProduto) {
         return produtoReposiroty
             .produtosPorCodigo(codigoProduto)
-            .stream()
-            .map(Produto::getCosifs)
-            .flatMap(Collection::stream)
-            .collect(Collectors.toList());
+            .orElseThrow(() -> new IllegalArgumentException("Produto não existe!"))
+            .getCosifs();
     }
 }

@@ -8,6 +8,15 @@ export interface Produto {
   descricao: string;
 }
 
+export interface MovimentoManualRequest {
+  mes: string;
+  ano: string;
+  valor: number;
+  descricao: string;
+  codigoProduto: string;
+  codigoCosif: string;
+}
+
 export interface MovimentoManual {
   mes: string;
   ano: string;

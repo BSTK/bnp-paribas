@@ -10,8 +10,9 @@
           id="mes"
           name="mes"
           class="form-control"
-          [disabled]="desabilitarCampos"
           required
+          [(ngModel)]="movimentoManual.mes"
+          [disabled]="desabilitarCampos"
       />
     </div>
     <div class="col">
@@ -21,37 +22,41 @@
           id="ano"
           name="ano"
           class="form-control"
-          [disabled]="desabilitarCampos"
           required
+          [(ngModel)]="movimentoManual.ano"
+          [disabled]="desabilitarCampos"
       />
     </div>
   </div>
   <div class="row mb-2">
     <div class="col">
-      <label for="produto">Produto:</label>
+      <label for="codigoProduto">Produto:</label>
       <select
           class="form-select"
-          id="produto"
-          name="produto"
+          id="codigoProduto"
+          name="codigoProduto"
           [disabled]="desabilitarCampos"
+          [(ngModel)]="movimentoManual.codigoProduto"
+          (ngModelChange)="onProdutoSelecionado($event)"
           required>
         <option>-- Selecione --</option>
-        <option *ngFor="let item of produtos" [value]="item">
+        <option *ngFor="let item of produtos" [value]="item.codigo">
           {{ item.descricao }}
         </option>
       </select>
     </div>
     <div class="col">
-      <label for="cosif">Cosif:</label>
+      <label for="codigoCosif">Cosif:</label>
       <select
           class="form-select"
-          id="cosif"
-          name="cosif"
-          [disabled]="desabilitarCampos"
+          id="codigoCosif"
+          name="codigoCosif"
+          [(ngModel)]="movimentoManual.codigoCosif"
+          [disabled]="desabilitarCamposCosif"
           required>
         <option>-- Selecione --</option>
-        <option *ngFor="let item of cosifs" [value]="item">
-          {{ item.codigoCosif }} - {{ item.codigoClassificacao }}
+        <option *ngFor="let item of cosifs" [value]="item.codigoCosif">
+          {{ item.codigoCosif }} - ({{ item.codigoClassificacao }})
         </option>
       </select>
     </div>
@@ -64,8 +69,9 @@
           id="valor"
           name="valor"
           class="form-control"
-          [disabled]="desabilitarCampos"
           required
+          [(ngModel)]="movimentoManual.valor"
+          [disabled]="desabilitarCampos"
       />
     </div>
   </div>
@@ -78,8 +84,9 @@
           name="descricao"
           class="form-control"
           rows="4"
-          [disabled]="desabilitarCampos"
-          required>
+          required
+          [(ngModel)]="movimentoManual.descricao"
+          [disabled]="desabilitarCampos">
           </textarea>
     </div>
   </div>

@@ -1,6 +1,9 @@
 package dev.bstk.bnp.movimento.api.request;
 
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import lombok.Getter;
 import lombok.Setter;
@@ -9,21 +12,23 @@ import lombok.Setter;
 @Setter
 public class MovimentoManualRequest {
 
-    @NotEmpty
-    private String mes;
+    @NotNull
+    @Min(1)
+    @Max(12)
+    private Short mes;
+
+    @NotNull
+    private Short ano;
 
     @NotEmpty
-    private String ano;
+    private String codigoProduto;
 
     @NotEmpty
-    private String produto;
-
-    @NotEmpty
-    private String cosif;
+    private String codigoCosif;
 
     @NotEmpty
     private String descricao;
 
-    @NotEmpty
+    @NotNull
     private BigDecimal valor;
 }

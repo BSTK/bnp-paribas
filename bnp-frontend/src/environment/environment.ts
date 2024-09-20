@@ -4,5 +4,5 @@ export const environment = {
   production: true,
   produtos: `${baseUrl}/v1/produtos`,
   produtosCosif: `${baseUrl}/v1/produtos/cosif`,
-  movimentos: `${baseUrl}/v1/movimento-manual`,
+  movimentos: `${baseUrl}/v1/movimento-manual`
 };

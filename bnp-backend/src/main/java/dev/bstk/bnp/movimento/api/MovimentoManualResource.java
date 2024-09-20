@@ -1,12 +1,15 @@
 package dev.bstk.bnp.movimento.api;
 
+import dev.bstk.bnp.helper.MapperHelper;
 import dev.bstk.bnp.movimento.api.request.MovimentoManualRequest;
 import dev.bstk.bnp.movimento.api.response.MovimentoManualResponse;
 import dev.bstk.bnp.movimento.model.MovimentoManual;
+import dev.bstk.bnp.movimento.model.MovimentoManualProjection;
 import dev.bstk.bnp.movimento.service.MovimentoManualService;
 import jakarta.validation.Valid;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,10 +26,11 @@ public class MovimentoManualResource {
 
 
     @PostMapping
-    public ResponseEntity<MovimentoManualResponse> incluirMovimento(@RequestBody @Valid final MovimentoManualRequest request) {
-        movimentoManualService.incluirMovimento(new MovimentoManual());
+    public ResponseEntity<Void> incluirMovimento(@RequestBody @Valid final MovimentoManualRequest request) {
+        final var movimentoManual = MapperHelper.to(request, MovimentoManual.class);
+        movimentoManualService.incluirMovimento(movimentoManual);
 
-        return ResponseEntity.ok(null);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @GetMapping
@@ -40,18 +44,16 @@ public class MovimentoManualResource {
         return ResponseEntity.ok(movimentosResponse);
     }
 
-    private MovimentoManualResponse movimentoResponse(final MovimentoManual movimentoManual) {
-        final var movimentoId = movimentoManual.getId();
-
+    private MovimentoManualResponse movimentoResponse(final MovimentoManualProjection movimentoManual) {
         return MovimentoManualResponse
             .builder()
-            .mes(String.format("%02d", movimentoId.getMes()))
-            .ano(String.format("%02d", movimentoId.getAno()))
-            .codigoProduto(movimentoId.getProduto().getCodigo())
-            .descricaoProduto(movimentoId.getProduto().getDescricao())
-            .numeroLancamento(String.valueOf(movimentoId.getNumeroLancamento()))
-            .descricao(movimentoManual.getDescricao())
             .valor(movimentoManual.getValor())
+            .descricao(movimentoManual.getDescricao())
+            .codigoProduto(movimentoManual.getCodigoProduto())
+            .mes(String.format("%02d", movimentoManual.getMes()))
+            .ano(String.format("%02d", movimentoManual.getAno()))
+            .descricaoProduto(movimentoManual.getDescricaoProduto())
+            .numeroLancamento(String.format("%03d", movimentoManual.getNumeroLancamento()))
             .build();
     }
 }
