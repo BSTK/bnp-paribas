@@ -97,5 +97,4 @@ class MovimentoManualResourceTest {
             public BigDecimal getValor() { return BigDecimal.valueOf(10); }
         };
     }
-
 }

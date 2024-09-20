@@ -6,7 +6,8 @@ import {AppComponent} from './app.component';
 import {FormsModule} from "@angular/forms";
 import {CommonModule} from "@angular/common";
 import {MovimentoManualComponent} from './movimento-manual/movimento-manual.component';
-import {CoreModule} from "../../../../../Workspace-Ck/gap/gap-frontend/src/app/core/core.module";
+import {CoreModule} from "./core/core.module";
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import {CoreModule} from "../../../../../Workspace-Ck/gap/gap-frontend/src/app/c
     CommonModule,
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     CoreModule
   ],
   providers: [],

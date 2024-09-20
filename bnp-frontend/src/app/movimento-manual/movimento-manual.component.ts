@@ -9,7 +9,7 @@ import {
 } from "./movimento-manual.model";
 
 @Component({
-  selector: 'app-movimento-manual',
+  selector: 'bnp-movimento-manual',
   templateUrl: './movimento-manual.component.html'
 })
 export class MovimentoManualComponent implements OnInit {
