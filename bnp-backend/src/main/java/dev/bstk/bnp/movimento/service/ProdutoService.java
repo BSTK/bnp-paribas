@@ -21,7 +21,7 @@ public class ProdutoService {
     public List<ProdutoCosif> cosifs(final String codigoProduto) {
         return produtoReposiroty
             .produtosPorCodigo(codigoProduto)
-            .orElseThrow(() -> new IllegalArgumentException("Produto não existe!"))
+            .orElseThrow(() -> new IllegalArgumentException("Código Produto inválido!"))
             .getCosifs();
     }
 }

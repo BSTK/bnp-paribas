@@ -7,7 +7,6 @@ import {
   Produto,
   ProdutoCosif
 } from "./movimento-manual.model";
-import {forkJoin} from "rxjs";
 
 @Component({
   selector: 'app-movimento-manual',
@@ -28,17 +27,8 @@ export class MovimentoManualComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.movimentoManual.codigoCosif = '0000';
-    this.movimentoManual.codigoProduto = '0000';
-
-    const $produtos = this.produtoService.produtos();
-    const $movimentos = this.movimentoManualService.movimentos();
-
-    forkJoin([$produtos, $movimentos])
-    .subscribe(([produtosResponse, movimentosresponse]) => {
-      if (produtosResponse) { this.produtos = produtosResponse; }
-      if (movimentosresponse) { this.movimentos = movimentosresponse; }
-    });
+    this.carregarProdutos();
+    this.carregarMovimentos();
   }
 
   onNovo(): void {
@@ -51,31 +41,44 @@ export class MovimentoManualComponent implements OnInit {
 
   onIncluir(): void {
     this.movimentoManualService
-      .incluirMovimento(this.movimentoManual)
-      .subscribe(() => {
-        this.resetarFormulario();
-
-        this.movimentoManualService
-          .movimentos()
-          .subscribe((movimentosresponse) => {
-            if (movimentosresponse) {
-              this.movimentos = movimentosresponse;
-            }
-          });
-      });
+    .incluirMovimento(this.movimentoManual)
+    .subscribe(() => {
+      this.resetarFormulario();
+      this.carregarMovimentos();
+    });
   }
 
   onProdutoSelecionado(codigoProduto: string): void {
     if (codigoProduto) {
       this.produtoService
-        .cosifs(codigoProduto)
-        .subscribe((response) => {
-          if (response) {
-            this.cosifs = response;
-            this.desabilitarCamposCosif = false;
-          }
-        });
+      .cosifs(codigoProduto)
+      .subscribe((response) => {
+        if (response) {
+          this.cosifs = response;
+          this.desabilitarCamposCosif = false;
+        }
+      });
     }
+  }
+
+  private carregarProdutos(): void {
+    this.produtoService
+    .produtos()
+    .subscribe((produtosResponse) => {
+      if (produtosResponse) {
+        this.produtos = produtosResponse;
+      }
+    });
+  }
+
+  private carregarMovimentos(): void {
+    this.movimentoManualService
+    .movimentos()
+    .subscribe((movimentosresponse) => {
+      if (movimentosresponse) {
+        this.movimentos = movimentosresponse;
+      }
+    });
   }
 
   private resetarFormulario(): void {
