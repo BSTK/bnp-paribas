@@ -51,7 +51,7 @@ public class MovimentoManualResource {
             .descricao(movimentoManual.getDescricao())
             .codigoProduto(movimentoManual.getCodigoProduto())
             .mes(String.format("%02d", movimentoManual.getMes()))
-            .ano(String.format("%02d", movimentoManual.getAno()))
+            .ano(String.valueOf(movimentoManual.getAno()))
             .descricaoProduto(movimentoManual.getDescricaoProduto())
             .numeroLancamento(String.format("%03d", movimentoManual.getNumeroLancamento()))
             .build();
