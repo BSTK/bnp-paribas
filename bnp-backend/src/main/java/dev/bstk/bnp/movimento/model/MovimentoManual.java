@@ -4,7 +4,9 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.IdClass;
+import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -54,5 +56,12 @@ public class MovimentoManual implements Serializable {
     @Column(name = "VAL_VALOR")
     private BigDecimal valor;
 
+    @Transient
     private String descricaoProduto;
+
+    @PrePersist
+    private void preInsert() {
+        setCodigoUsuario("TESTE");
+        setDataMovimento(LocalDateTime.now());
+    }
 }
