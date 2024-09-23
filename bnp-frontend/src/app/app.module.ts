@@ -8,6 +8,7 @@ import {CommonModule} from "@angular/common";
 import {MovimentoManualComponent} from './movimento-manual/movimento-manual.component';
 import {CoreModule} from "./core/core.module";
 import {HttpClientModule} from "@angular/common/http";
+import {NgxCurrencyDirective} from "ngx-currency";
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import {HttpClientModule} from "@angular/common/http";
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    CoreModule
+    CoreModule,
+    NgxCurrencyDirective
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -36,7 +36,7 @@ export class MovimentoManualComponent implements OnInit {
   }
 
   onLimpar(): void {
-    this.resetarFormulario();
+    this.movimentoManual = {} as MovimentoManualRequest;
   }
 
   onIncluir(): void {

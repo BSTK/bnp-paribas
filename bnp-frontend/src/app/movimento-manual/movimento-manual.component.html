@@ -69,6 +69,7 @@
           id="valor"
           name="valor"
           class="form-control"
+          [currencyMask]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"
           required
           [(ngModel)]="movimentoManual.valor"
           [disabled]="desabilitarCampos"
@@ -120,7 +121,7 @@
       <td>{{ item.descricaoProduto }}</td>
       <td>{{ item.numeroLancamento }}</td>
       <td>{{ item.descricao }}</td>
-      <td>{{ item.valor }}</td>
+      <td>R$ {{ item.valor }}</td>
     </tr>
     </tbody>
   </table>
